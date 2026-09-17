@@ -1,4 +1,4 @@
-1. Problem Understanding
+###  Problem Understanding
 
 The main requirement was to build a café rewards system where a member's points balance is always accurate.
 
@@ -21,7 +21,7 @@ A usable frontend
 
 The main design principle was to keep the reward and points logic in the backend so that the frontend cannot directly modify or calculate the member's balance.
 
-2. Overall Architecture
+###  Overall Architecture
 
 BeanLedger was divided into three main layers:
 
@@ -39,7 +39,7 @@ FastAPI Swagger UI was also used to test the APIs directly during development.
 
 The application was developed and tested in GitHub Codespaces as required by the challenge.
 
-3. Database Design
+### Database Design
 
 SQLite was selected because it provides a real persistent database while keeping the project simple to run in Codespaces.
 
@@ -56,7 +56,7 @@ outbox_events — tier-change notification events
 
 The database acts as the source of truth for member balances and transaction history.
 
-4. Current Points and Lifetime Points
+### Current Points and Lifetime Points
 
 Two separate balances were used because they have different meanings.
 
@@ -94,7 +94,7 @@ Lifetime Points = 100
 
 This prevents redemption or expiry from incorrectly downgrading a member's tier.
 
-5. Purchase and Point Calculation
+### Purchase and Point Calculation
 
 The backend receives the purchase amount and calculates the points.
 
@@ -128,7 +128,7 @@ For example, if a Bronze member crosses the Silver threshold because of a purcha
 
 This keeps the earning rule deterministic.
 
-6. Tier Rules
+### Tier Rules
 
 Tier calculation is based on lifetime points.
 
@@ -146,7 +146,7 @@ Platinum → 0.3 point / ₹
 
 The backend recalculates the tier after every purchase.
 
-7. Platinum Backward Compatibility
+### Platinum Backward Compatibility
 
 The first challenge twist required adding Platinum without breaking existing behaviour.
 
@@ -160,7 +160,7 @@ Because tier calculation is based on lifetime points, adding Platinum does not d
 
 A member moves to Platinum only when the lifetime-point threshold is reached.
 
-8. Reward Redemption
+### Reward Redemption
 
 The reward API first checks whether the member has enough current points.
 
@@ -184,7 +184,7 @@ If the member does not have enough points, the redemption is rejected.
 
 Lifetime points are not reduced during redemption.
 
-9. Point Lots and Expiry
+### Point Lots and Expiry
 
 The 90-day expiry requirement required tracking individual batches of earned points.
 
@@ -204,7 +204,7 @@ earned_at + 90 days
 
 This allows the system to identify exactly which unused points have expired.
 
-10. Oldest-First Redemption
+### Oldest-First Redemption
 
 When a member redeems a reward, the system consumes available point lots from the oldest lot first.
 
@@ -224,7 +224,7 @@ The system tracks both points_earned and points_remaining.
 
 This is important because already-redeemed points must not be expired later.
 
-11. Point Expiry and /clock
+### Point Expiry and /clock
 
 The challenge required unused points to expire after 90 days.
 
@@ -260,7 +260,7 @@ Lifetime Points = 100
 
 Using /clock makes the expiry behaviour deterministic and easy to test.
 
-12. Tier-Change Notifications
+### Tier-Change Notifications
 
 The third challenge twist required a notification when a member crosses into a new tier.
 
@@ -289,7 +289,7 @@ GET /outbox
 
 The current implementation creates and stores the notification event. Actual SMS, email or push delivery can be connected to a separate Notification Service later.
 
-13. Authentication
+### Authentication
 
 Staff registration and login were implemented using JWT authentication.
 
@@ -313,7 +313,7 @@ Protected operations require authentication.
 
 Passwords are stored as hashes rather than plain text.
 
-14. Member Search
+### Member Search
 
 The café staff need to find members quickly, especially when the member list becomes large.
 
@@ -344,7 +344,7 @@ created_at
 
 This was implemented because the challenge specifically mentions that the member list can be long.
 
-16. Frontend Design
+### Frontend Design
 
 The frontend was built using React and Vite with Tailwind CSS.
 
@@ -370,7 +370,7 @@ Future improvements
 
 The interface was kept simple so that café staff can perform common counter operations without unnecessary steps.
 
-17. Testing Strategy
+### Testing Strategy
 
 Testing was performed feature by feature instead of waiting until the complete application was finished.
 
@@ -392,7 +392,7 @@ Retest
 
 Testing was mainly performed using FastAPI Swagger UI and the React frontend.
 
-18. Authentication Testing
+### Authentication Testing
 
 The following cases were tested:
 
@@ -405,7 +405,7 @@ Access to protected APIs
 
 The login request was tested using the form format required by OAuth2PasswordRequestForm.
 
-19. Member Testing
+### Member Testing
 
 The following cases were tested:
 
@@ -419,7 +419,7 @@ Sorting
 
 The database was checked to confirm that member information was persisted correctly.
 
-20. Purchase Testing
+### Purchase Testing
 
 The purchase flow was tested by:
 
@@ -434,7 +434,7 @@ Checking the point lot
 
 Tier-boundary purchases were also tested to verify that the tier changes after the purchase.
 
-21. Redemption Testing
+### Redemption Testing
 
 The redemption flow was tested by:
 
@@ -448,7 +448,7 @@ Checking point-lot consumption
 
 Oldest-first point consumption was also verified.
 
-22. Platinum Testing
+### Platinum Testing
 
 The Platinum boundary was tested using lifetime points.
 
@@ -462,7 +462,7 @@ Platinum is assigned at the required threshold
 Existing tiers still work
 Lifetime points are used for tier calculation
 Adding Platinum does not directly modify existing current balances
-23. Expiry Testing
+### Expiry Testing
 
 The expiry flow was tested without waiting 90 days.
 
@@ -488,7 +488,7 @@ Check Expiration Transaction
 
 The main validation was that expired points reduce current_points but do not reduce lifetime_points.
 
-24. Outbox Testing
+### Outbox Testing
 
 Tier-change notifications were tested by triggering tier boundaries.
 
@@ -506,7 +506,7 @@ GET /outbox
 
 The returned event was checked to verify the old tier, new tier and member information.
 
-25. Issues Encountered and Fixes
+### Issues Encountered and Fixes
 Issue 1 — Missing email-validator
 
 Pydantic's EmailStr required the email-validator package.
