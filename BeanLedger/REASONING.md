@@ -633,6 +633,26 @@ Pagination and Sorting
 
 These features address the requirement that the café may have a large member list.
 
+
+### Edge Cases Considered
+
+The implementation considered the following cases:
+
+- Duplicate member phone number
+- Duplicate staff email
+- Invalid login credentials
+- Member not found
+- Reward not found
+- Insufficient points for redemption
+- Purchase crossing a tier boundary
+- Platinum threshold at 5000 lifetime points
+- Partial consumption of a point lot
+- Already-redeemed points during expiry
+- Expired point lots with zero remaining points
+- Pagination with different page sizes
+- Sorting by different member fields
+- Tier changes that generate outbox events
+
 ### Final Validation
 
 After completing the implementation, the complete reward lifecycle was validated:
