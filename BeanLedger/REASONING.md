@@ -21,6 +21,26 @@ A usable frontend
 
 The main design principle was to keep the reward and points logic in the backend so that the frontend cannot directly modify or calculate the member's balance.
 
+### Requirements → Implementation
+
+| Challenge Requirement | Implementation |
+|---|---|
+| Record purchase | `POST /api/members/{member_id}/purchases` |
+| Correct point calculation | Backend tier-based calculation |
+| Live balance | `current_points` |
+| Lifetime progress | `lifetime_points` |
+| Tier progression | Bronze → Silver → Gold → Platinum |
+| Reward redemption | `POST /api/members/{member_id}/redeem` |
+| Member lookup | Phone-number search |
+| Large member list | Pagination + sorting |
+| Staff access | JWT authentication |
+| Platinum | Lifetime points >= 5000 |
+| Point expiry | PointLot + 90-day expiry |
+| Time-based testing | `POST /clock` |
+| Tier notification | Outbox `TIER_CHANGED` event |
+| Usable interface | React + Vite frontend |
+| API documentation | FastAPI Swagger `/docs` |
+
 ###  Overall Architecture
 
 BeanLedger was divided into three main layers:
@@ -530,7 +550,7 @@ pip freeze > requirements.txt
 
 After the fix, registration, password hashing and login worked correctly.
 
-Issue 3 — Login Request Format
+### Issue 3 — Login Request Format
 
 The login endpoint uses OAuth2PasswordRequestForm, so sending normal JSON was not the correct request format.
 
@@ -547,7 +567,7 @@ application/x-www-form-urlencoded
 
 URLSearchParams was used on the frontend to match the FastAPI endpoint.
 
-Issue 4 — Expiry Testing
+ ### Issue 4 — Expiry Testing
 
 The system could not practically be tested by waiting 90 days.
 
@@ -555,7 +575,7 @@ Fix
 
 The /clock endpoint was added so a test timestamp can be supplied and the expiry process can be triggered immediately.
 
-Issue 5 — Tracking Expirable Points
+ ### Issue 5 — Tracking Expirable Points
 
 A single current_points value was not enough to determine which points were eligible for expiry.
 
@@ -570,7 +590,7 @@ expires_at
 
 This made individual point expiry possible.
 
-Issue 6 — Preventing Redeemed Points From Expiring
+### Issue 6 — Preventing Redeemed Points From Expiring
 
 The system needed to distinguish between points that were originally earned and points that were still unused.
 
@@ -580,7 +600,7 @@ points_remaining is reduced during redemption.
 
 The expiry process only considers the remaining unused points, preventing already-redeemed points from being expired.
 
-26. Key Design Decisions
+### Key Design Decisions
 Backend as the Source of Truth
 
 All important reward calculations happen on the backend.
@@ -613,7 +633,7 @@ Pagination and Sorting
 
 These features address the requirement that the café may have a large member list.
 
-27. Final Validation
+### Final Validation
 
 After completing the implementation, the complete reward lifecycle was validated:
 
