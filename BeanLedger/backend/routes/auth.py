@@ -4,16 +4,9 @@ from sqlalchemy.orm import Session
 
 from database import get_db
 from models import User
-from schemas import (
-    RegisterRequest,
-    LoginRequest,
-    TokenResponse
-)
-from auth import (
-    hash_password,
-    verify_password,
-    create_access_token
-)
+from schemas import RegisterRequest, TokenResponse
+from auth import hash_password, verify_password, create_access_token
+
 
 router = APIRouter(
     prefix="/api/auth",
@@ -57,20 +50,20 @@ def login(
     form_data: OAuth2PasswordRequestForm = Depends(),
     db: Session = Depends(get_db)
 ):
+    email = form_data.username.strip().lower()
+    password = form_data.password
+
     user = db.query(User).filter(
-        User.email == form_data.username
+        User.email == email
     ).first()
 
-    if not user:
+    if user is None:
         raise HTTPException(
             status_code=401,
             detail="Invalid email or password"
         )
 
-    if not verify_password(
-        form_data.password,
-        user.password
-    ):
+    if not verify_password(password, user.password):
         raise HTTPException(
             status_code=401,
             detail="Invalid email or password"

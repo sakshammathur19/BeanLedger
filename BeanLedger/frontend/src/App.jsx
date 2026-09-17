@@ -1,18 +1,18 @@
 import { Routes, Route, useNavigate } from "react-router-dom";
 import Login from "./pages/Login";
 
-
-
 function LandingPage() {
+  const navigate = useNavigate();
+
   return (
     <div className="min-h-screen bg-slate-950 text-white">
 
       {/* Navbar */}
-      <nav className="border-b border-slate-800">
+      <nav className="border-b border-slate-800 bg-slate-950/95">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
 
           <div className="flex items-center gap-3">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-amber-500 text-xl">
+            <div className="text-3xl">
               ☕
             </div>
 
@@ -20,308 +20,345 @@ function LandingPage() {
               <h1 className="text-xl font-bold">
                 BeanLedger
               </h1>
-              <p className="text-xs text-slate-400">
+
+              <p className="text-xs text-slate-500">
                 Café Rewards Management
               </p>
             </div>
           </div>
 
-          <button className="rounded-lg bg-amber-500 px-5 py-2.5 font-semibold text-slate-950 transition hover:bg-amber-400">
+          <button
+            onClick={() => navigate("/login")}
+            className="rounded-lg border border-slate-700 px-5 py-2 text-sm font-medium transition hover:border-amber-500 hover:text-amber-400"
+          >
             Staff Login
           </button>
 
         </div>
       </nav>
 
+      {/* Hero */}
+      <section className="mx-auto grid max-w-7xl items-center gap-12 px-6 py-20 lg:grid-cols-2">
 
-      {/* Hero Section */}
-      <main>
-
-        <section className="mx-auto max-w-7xl px-6 py-24">
-
-          <div className="grid items-center gap-16 lg:grid-cols-2">
-
-            {/* Left */}
-            <div>
-
-              <div className="mb-6 inline-flex rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-2 text-sm text-amber-400">
-                ☕ Smart Café Rewards Platform
-              </div>
-
-              <h2 className="text-5xl font-bold leading-tight md:text-6xl">
-                Every point.
-                <br />
-
-                <span className="text-amber-400">
-                  Always accurate.
-                </span>
-              </h2>
-
-              <p className="mt-6 max-w-xl text-lg leading-8 text-slate-400">
-                BeanLedger helps café staff manage member points,
-                tier-based rewards, purchases and redemptions from
-                one simple counter system.
-              </p>
-
-              <div className="mt-8 flex flex-wrap gap-4">
-
-                <button className="rounded-xl bg-amber-500 px-6 py-3 font-semibold text-slate-950 transition hover:bg-amber-400">
-                  Get Started
-                </button>
-
-                <button className="rounded-xl border border-slate-700 px-6 py-3 font-semibold text-white transition hover:bg-slate-800">
-                  Explore Features
-                </button>
-
-              </div>
-
-            </div>
-
-
-            {/* Dashboard Preview */}
-            <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6 shadow-2xl">
-
-              <div className="mb-6 flex items-center justify-between">
-
-                <div>
-                  <p className="text-sm text-slate-400">
-                    Member Balance
-                  </p>
-
-                  <h3 className="mt-1 text-3xl font-bold">
-                    980 pts
-                  </h3>
-                </div>
-
-                <span className="rounded-full bg-yellow-500/10 px-4 py-2 text-sm font-semibold text-yellow-400">
-                  Gold
-                </span>
-
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
-
-                <div className="rounded-xl bg-slate-800 p-4">
-                  <p className="text-sm text-slate-400">
-                    Lifetime Points
-                  </p>
-                  <p className="mt-2 text-2xl font-bold">
-                    1,080
-                  </p>
-                </div>
-
-                <div className="rounded-xl bg-slate-800 p-4">
-                  <p className="text-sm text-slate-400">
-                    Tier Multiplier
-                  </p>
-                  <p className="mt-2 text-2xl font-bold text-amber-400">
-                    3×
-                  </p>
-                </div>
-
-              </div>
-
-              <div className="mt-4 rounded-xl bg-slate-800 p-4">
-
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-slate-400">
-                    Recent Purchase
-                  </span>
-
-                  <span className="text-sm text-green-400">
-                    +30 pts
-                  </span>
-                </div>
-
-                <div className="mt-3 flex items-center justify-between">
-                  <span>
-                    Café Order
-                  </span>
-
-                  <span className="font-semibold">
-                    ₹100
-                  </span>
-                </div>
-
-              </div>
-
-            </div>
-
+        <div>
+          <div className="mb-5 inline-flex rounded-full border border-amber-500/20 bg-amber-500/10 px-4 py-2 text-sm text-amber-400">
+            Smart Café Rewards
           </div>
 
-        </section>
+          <h2 className="text-5xl font-bold leading-tight md:text-6xl">
+            Every point.
+            <br />
+            <span className="text-amber-400">
+              Exactly right.
+            </span>
+          </h2>
 
+          <p className="mt-6 max-w-xl text-lg leading-8 text-slate-400">
+            BeanLedger helps café staff record purchases, calculate
+            rewards automatically, manage member tiers, and redeem
+            rewards without losing track of points.
+          </p>
 
-        {/* Features */}
-        <section className="border-y border-slate-800 bg-slate-900/40">
+          <div className="mt-8 flex flex-wrap gap-4">
 
-          <div className="mx-auto max-w-7xl px-6 py-20">
+            <button
+              onClick={() => navigate("/login")}
+              className="rounded-lg bg-amber-500 px-6 py-3 font-semibold text-slate-950 transition hover:bg-amber-400"
+            >
+              Get Started →
+            </button>
 
-            <div className="text-center">
-
-              <p className="text-sm font-semibold uppercase tracking-wider text-amber-400">
-                Key Features
-              </p>
-
-              <h2 className="mt-3 text-3xl font-bold">
-                Built for the café counter
-              </h2>
-
-              <p className="mx-auto mt-4 max-w-2xl text-slate-400">
-                Everything staff need to manage rewards quickly
-                and accurately.
-              </p>
-
-            </div>
-
-
-            <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-
-              <Feature
-                icon="⚡"
-                title="Automatic Points"
-                description="Points are calculated automatically based on purchase amount and member tier."
-              />
-
-              <Feature
-                icon="🏆"
-                title="Tier Rewards"
-                description="Bronze, Silver and Gold members automatically earn at the correct rate."
-              />
-
-              <Feature
-                icon="🎁"
-                title="Instant Redemption"
-                description="Redeem available rewards while preventing members from going below zero."
-              />
-
-              <Feature
-                icon="🔎"
-                title="Fast Lookup"
-                description="Find members quickly using their phone number, even with a large member list."
-              />
-
-            </div>
+            <button
+              onClick={() =>
+                document
+                  .getElementById("features")
+                  ?.scrollIntoView({ behavior: "smooth" })
+              }
+              className="rounded-lg border border-slate-700 px-6 py-3 font-semibold transition hover:border-slate-500"
+            >
+              Explore Features
+            </button>
 
           </div>
+        </div>
 
-        </section>
+        {/* Dashboard Preview */}
+        <div className="rounded-2xl border border-slate-800 bg-slate-900 p-5 shadow-2xl">
 
-
-        {/* Target Audience */}
-        <section className="mx-auto max-w-7xl px-6 py-20">
-
-          <div className="grid gap-12 md:grid-cols-2">
-
+          <div className="mb-5 flex items-center justify-between">
             <div>
-              <p className="text-sm font-semibold uppercase tracking-wider text-amber-400">
-                Who is it for?
+              <p className="text-sm text-slate-400">
+                Member
               </p>
-
-              <h2 className="mt-3 text-3xl font-bold">
-                Designed for café teams
-              </h2>
-
-              <p className="mt-5 leading-7 text-slate-400">
-                BeanLedger is designed for café staff and café chains
-                that need a reliable way to manage loyalty members,
-                purchases, points and rewards at the counter.
-              </p>
-            </div>
-
-
-            <div className="rounded-2xl border border-slate-800 bg-slate-900 p-7">
 
               <h3 className="text-xl font-bold">
-                How BeanLedger helps
+                Rahul Sharma
               </h3>
-
-              <ul className="mt-5 space-y-4 text-slate-400">
-
-                <li>✓ Removes manual point calculations</li>
-                <li>✓ Keeps balances consistent after every transaction</li>
-                <li>✓ Makes phone-based member lookup simple</li>
-                <li>✓ Keeps a complete transaction history</li>
-
-              </ul>
-
             </div>
+
+            <span className="rounded-full bg-yellow-500/10 px-3 py-1 text-sm text-yellow-400">
+              Gold
+            </span>
+          </div>
+
+          <div className="rounded-xl bg-slate-800 p-6">
+
+            <p className="text-sm text-slate-400">
+              Current Points
+            </p>
+
+            <p className="mt-2 text-5xl font-bold text-amber-400">
+              980
+            </p>
+
+            <p className="mt-2 text-sm text-slate-500">
+              Lifetime points: 1,230
+            </p>
 
           </div>
 
-        </section>
+          <div className="mt-4 grid grid-cols-2 gap-4">
 
-
-        {/* Future Features */}
-        <section className="border-t border-slate-800 bg-slate-900/40">
-
-          <div className="mx-auto max-w-7xl px-6 py-20">
-
-            <div className="text-center">
-
-              <p className="text-sm font-semibold uppercase tracking-wider text-amber-400">
-                What's Next
+            <div className="rounded-xl bg-slate-800 p-4">
+              <p className="text-sm text-slate-400">
+                Earn Rate
               </p>
 
-              <h2 className="mt-3 text-3xl font-bold">
-                Future possibilities
-              </h2>
-
+              <p className="mt-2 text-xl font-bold">
+                3 pts / ₹10
+              </p>
             </div>
 
+            <div className="rounded-xl bg-slate-800 p-4">
+              <p className="text-sm text-slate-400">
+                Rewards
+              </p>
 
-            <div className="mt-10 grid gap-6 md:grid-cols-3">
-
-              <Future
-                title="QR Member Lookup"
-                description="Let customers show a QR code instead of sharing their phone number."
-              />
-
-              <Future
-                title="Customer Mobile App"
-                description="Give members a mobile view of their points, rewards and transaction history."
-              />
-
-              <Future
-                title="Personalized Rewards"
-                description="Use purchase history to offer personalized rewards and promotions."
-              />
-
+              <p className="mt-2 text-xl font-bold">
+                4 Available
+              </p>
             </div>
 
           </div>
 
-        </section>
+        </div>
 
-      </main>
+      </section>
 
+      {/* Features */}
+      <section
+        id="features"
+        className="border-y border-slate-800 bg-slate-900/40 px-6 py-20"
+      >
+        <div className="mx-auto max-w-7xl">
+
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-wider text-amber-400">
+              Key Features
+            </p>
+
+            <h2 className="mt-3 text-3xl font-bold md:text-4xl">
+              Everything the counter needs
+            </h2>
+
+            <p className="mt-4 text-slate-400">
+              Simple tools designed around accurate reward management.
+            </p>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+
+            <Feature
+              icon="⚡"
+              title="Automatic Points"
+              text="Points are calculated automatically based on purchase amount and member tier."
+            />
+
+            <Feature
+              icon="🏆"
+              title="Tier Management"
+              text="Members automatically move from Bronze to Silver and Gold based on lifetime points."
+            />
+
+            <Feature
+              icon="🎁"
+              title="Easy Redemption"
+              text="Staff can redeem available rewards while preventing negative balances."
+            />
+
+            <Feature
+              icon="🔎"
+              title="Fast Search"
+              text="Find members quickly using their phone number, even with a large member list."
+            />
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* Target Audience */}
+      <section className="px-6 py-20">
+        <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-2">
+
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-wider text-amber-400">
+              Built For
+            </p>
+
+            <h2 className="mt-3 text-3xl font-bold">
+              Café teams of every size
+            </h2>
+
+            <p className="mt-5 leading-7 text-slate-400">
+              BeanLedger is designed for cafés that need a simple,
+              reliable way to manage loyalty members at the counter.
+            </p>
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-2">
+
+            <Audience
+              title="Independent Cafés"
+              text="Manage loyalty without complicated systems."
+            />
+
+            <Audience
+              title="Café Chains"
+              text="Keep member rewards organized as the business grows."
+            />
+
+            <Audience
+              title="Counter Staff"
+              text="Quickly search members and record transactions."
+            />
+
+            <Audience
+              title="Loyalty Managers"
+              text="Maintain accurate points and reward activity."
+            />
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* How it helps */}
+      <section className="bg-slate-900/40 px-6 py-20">
+        <div className="mx-auto max-w-7xl">
+
+          <p className="text-sm font-semibold uppercase tracking-wider text-amber-400">
+            How It Helps
+          </p>
+
+          <h2 className="mt-3 text-3xl font-bold">
+            Less manual calculation. More confidence.
+          </h2>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+
+            <Help
+              number="01"
+              title="Record"
+              text="Staff enter the purchase amount and BeanLedger calculates the correct points."
+            />
+
+            <Help
+              number="02"
+              title="Reward"
+              text="Members can redeem rewards directly from their available balance."
+            />
+
+            <Help
+              number="03"
+              title="Track"
+              text="Every purchase and redemption is stored as a transaction."
+            />
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* Future Features */}
+      <section className="px-6 py-20">
+        <div className="mx-auto max-w-7xl">
+
+          <p className="text-sm font-semibold uppercase tracking-wider text-amber-400">
+            Next Features
+          </p>
+
+          <h2 className="mt-3 text-3xl font-bold">
+            Where BeanLedger can go next
+          </h2>
+
+          <div className="mt-10 grid gap-6 md:grid-cols-3">
+
+            <Future
+              title="Multiple Café Locations"
+              text="Manage members and transactions across multiple branches."
+            />
+
+            <Future
+              title="Analytics Dashboard"
+              text="Track loyalty activity, purchases, redemptions, and customer trends."
+            />
+
+            <Future
+              title="Member Notifications"
+              text="Notify members about rewards, tier upgrades, and special offers."
+            />
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="border-t border-slate-800 bg-slate-900 px-6 py-16">
+        <div className="mx-auto max-w-4xl text-center">
+
+          <h2 className="text-3xl font-bold">
+            Ready to manage your café rewards?
+          </h2>
+
+          <p className="mt-4 text-slate-400">
+            Start managing members and rewards with BeanLedger.
+          </p>
+
+          <button
+            onClick={() => navigate("/login")}
+            className="mt-7 rounded-lg bg-amber-500 px-7 py-3 font-semibold text-slate-950 transition hover:bg-amber-400"
+          >
+            Staff Login →
+          </button>
+
+        </div>
+      </section>
 
       {/* Footer */}
-      <footer className="border-t border-slate-800">
-
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-8 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
-
+      <footer className="border-t border-slate-800 px-6 py-8">
+        <div className="mx-auto flex max-w-7xl items-center justify-between text-sm text-slate-500">
           <p>
             © 2026 BeanLedger
           </p>
 
           <p>
-            Smart Café Rewards Management
+            Café Rewards Management
           </p>
-
         </div>
-
       </footer>
 
     </div>
-  )
+  );
 }
 
 
-function Feature({ icon, title, description }) {
-  return (
-    <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6 transition hover:border-amber-500/40">
+/* Components */
 
+function Feature({ icon, title, text }) {
+  return (
+    <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6 transition hover:border-slate-700">
       <div className="text-3xl">
         {icon}
       </div>
@@ -331,36 +368,192 @@ function Feature({ icon, title, description }) {
       </h3>
 
       <p className="mt-3 text-sm leading-6 text-slate-400">
-        {description}
+        {text}
       </p>
-
     </div>
-  )
+  );
 }
 
 
-function Future({ title, description }) {
+function Audience({ title, text }) {
   return (
-    <div className="rounded-2xl border border-slate-800 bg-slate-900 p-6">
+    <div className="rounded-xl border border-slate-800 bg-slate-900 p-5">
+      <h3 className="font-semibold">
+        {title}
+      </h3>
 
+      <p className="mt-2 text-sm leading-6 text-slate-400">
+        {text}
+      </p>
+    </div>
+  );
+}
+
+
+function Help({ number, title, text }) {
+  return (
+    <div className="rounded-2xl border border-slate-800 bg-slate-900 p-7">
+      <span className="text-sm font-bold text-amber-400">
+        {number}
+      </span>
+
+      <h3 className="mt-4 text-xl font-bold">
+        {title}
+      </h3>
+
+      <p className="mt-3 text-sm leading-6 text-slate-400">
+        {text}
+      </p>
+    </div>
+  );
+}
+
+
+function Future({ title, text }) {
+  return (
+    <div className="rounded-2xl border border-dashed border-slate-700 bg-slate-900/50 p-7">
       <h3 className="text-lg font-bold">
         {title}
       </h3>
 
       <p className="mt-3 text-sm leading-6 text-slate-400">
-        {description}
+        {text}
       </p>
-
     </div>
-  )
+  );
 }
 
+
+/* Dashboard */
+
+function Dashboard() {
+  const navigate = useNavigate();
+
+  const logout = () => {
+    localStorage.removeItem("token");
+    navigate("/login");
+  };
+
+  const token = localStorage.getItem("token");
+
+  if (!token) {
+    navigate("/login");
+    return null;
+  }
+
+  return (
+    <div className="min-h-screen bg-slate-950 text-white">
+
+      <nav className="border-b border-slate-800 bg-slate-900">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-5">
+
+          <div className="flex items-center gap-3">
+            <span className="text-3xl">
+              ☕
+            </span>
+
+            <div>
+              <h1 className="text-xl font-bold">
+                BeanLedger
+              </h1>
+
+              <p className="text-xs text-slate-500">
+                Staff Dashboard
+              </p>
+            </div>
+          </div>
+
+          <button
+            onClick={logout}
+            className="rounded-lg border border-slate-700 px-4 py-2 text-sm transition hover:border-red-500 hover:text-red-400"
+          >
+            Logout
+          </button>
+
+        </div>
+      </nav>
+
+      <main className="mx-auto max-w-7xl px-6 py-10">
+
+        <h2 className="text-3xl font-bold">
+          Welcome to BeanLedger
+        </h2>
+
+        <p className="mt-2 text-slate-400">
+          Manage members, purchases, points and rewards.
+        </p>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+
+          <DashboardCard
+            title="Members"
+            value="Manage Members"
+            text="Search and manage café loyalty members."
+          />
+
+          <DashboardCard
+            title="Purchases"
+            value="Record Purchase"
+            text="Add purchases and automatically calculate points."
+          />
+
+          <DashboardCard
+            title="Rewards"
+            value="Redeem Rewards"
+            text="Redeem rewards using available member points."
+          />
+
+        </div>
+
+        <div className="mt-8 rounded-2xl border border-slate-800 bg-slate-900 p-8">
+
+          <h3 className="text-xl font-bold">
+            Core System Ready
+          </h3>
+
+          <p className="mt-3 leading-7 text-slate-400">
+            Your BeanLedger backend is connected and authenticated.
+            The next step is connecting the dashboard screens to the
+            member, purchase, transaction, and reward APIs.
+          </p>
+
+        </div>
+
+      </main>
+    </div>
+  );
+}
+
+
+function DashboardCard({ title, value, text }) {
+  return (
+    <div className="rounded-2xl border border-slate-800 bg-slate-900 p-7">
+      <p className="text-sm text-slate-400">
+        {title}
+      </p>
+
+      <h3 className="mt-3 text-xl font-bold text-amber-400">
+        {value}
+      </h3>
+
+      <p className="mt-3 text-sm leading-6 text-slate-400">
+        {text}
+      </p>
+    </div>
+  );
+}
+
+
+/* App Routes */
 
 function App() {
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
+
       <Route path="/login" element={<Login />} />
+
+      <Route path="/dashboard" element={<Dashboard />} />
     </Routes>
   );
 }
