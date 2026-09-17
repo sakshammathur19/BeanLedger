@@ -1004,21 +1004,5 @@ Possible future improvements include:
 
 ---
 
-# 21. Summary
 
-BeanLedger provides a persistent café rewards counter that keeps member balances accurate through:
 
-* Tier-based point earning
-* Separate current and lifetime balances
-* Reward redemption validation
-* Transaction history
-* Individual point lots
-* 90-day point expiry
-* Platinum tier support
-* Tier-change outbox notifications
-* Phone-number member search
-* Pagination and sorting
-* JWT authentication
-* REST APIs
-* React-based user interface
-* SQLite persistence
