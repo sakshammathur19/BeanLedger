@@ -527,7 +527,7 @@ GET /outbox
 The returned event was checked to verify the old tier, new tier and member information.
 
 ### Issues Encountered and Fixes
-Issue 1 — Missing email-validator
+### Issue 1 — Missing email-validator
 
 Pydantic's EmailStr required the email-validator package.
 
