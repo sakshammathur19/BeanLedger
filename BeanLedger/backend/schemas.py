@@ -1,10 +1,8 @@
+
 from pydantic import BaseModel, EmailStr, Field
 from typing import Optional
+from datetime import datetime
 
-
-# =========================
-# AUTH
-# =========================
 
 class RegisterRequest(BaseModel):
     name: str
@@ -21,10 +19,6 @@ class TokenResponse(BaseModel):
     access_token: str
     token_type: str
 
-
-# =========================
-# MEMBER
-# =========================
 
 class MemberCreate(BaseModel):
     name: str
@@ -43,25 +37,13 @@ class MemberResponse(BaseModel):
         from_attributes = True
 
 
-# =========================
-# PURCHASE
-# =========================
-
 class PurchaseRequest(BaseModel):
     amount: float = Field(gt=0)
 
 
-# =========================
-# REDEMPTION
-# =========================
-
 class RedeemRequest(BaseModel):
     reward_id: int
 
-
-# =========================
-# REWARD
-# =========================
 
 class RewardResponse(BaseModel):
     id: int
@@ -70,3 +52,8 @@ class RewardResponse(BaseModel):
 
     class Config:
         from_attributes = True
+
+
+class ClockRequest(BaseModel):
+    now: datetime
+

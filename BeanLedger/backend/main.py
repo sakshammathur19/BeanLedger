@@ -1,3 +1,4 @@
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
@@ -9,22 +10,20 @@ from routes.auth import router as auth_router
 from routes.members import router as members_router
 from routes.purchases import router as purchases_router
 from routes.rewards import router as rewards_router
+from routes.clock import router as clock_router
+from routes.outbox import router as outbox_router
 
 
-# Create database tables
+# Create all database tables.
 Base.metadata.create_all(bind=engine)
 
 
 app = FastAPI(
     title="BeanLedger API",
     description="Café Rewards and Points Management System",
-    version="1.0.0"
+    version="2.0.0"
 )
 
-
-# =========================
-# CORS
-# =========================
 
 app.add_middleware(
     CORSMiddleware,
@@ -35,19 +34,16 @@ app.add_middleware(
 )
 
 
-# =========================
-# ROUTES
-# =========================
-
+# Existing routers
 app.include_router(auth_router)
 app.include_router(members_router)
 app.include_router(purchases_router)
 app.include_router(rewards_router)
 
+# New twist routers
+app.include_router(clock_router)
+app.include_router(outbox_router)
 
-# =========================
-# STARTUP
-# =========================
 
 @app.on_event("startup")
 def startup():
@@ -89,10 +85,6 @@ def seed_rewards():
         db.close()
 
 
-# =========================
-# BASIC ROUTES
-# =========================
-
 @app.get("/")
 def root():
     return {
@@ -106,3 +98,4 @@ def health():
     return {
         "status": "healthy"
     }
+
